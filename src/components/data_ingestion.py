@@ -10,6 +10,9 @@ from dataclasses import dataclass
 from src.components.data_transformation import DataTransformation
 from src.components.data_transformation import DataTransformationConfig
 
+from model_trainer import ModelTrainer
+from model_trainer import ModelTrainerConfig
+
 # The @dataclass decorator simplifies class creation by automatically generating 
 # special methods like __init__, __repr__, and __eq__ based on defined attributes.
 @dataclass
@@ -59,7 +62,12 @@ if __name__ == '__main__':
     train_data, test_data = obj.initiate_data_ingestion()
     
     data_transformation_obj = DataTransformation()
-    data_transformation_obj.initiate_data_transformation(train_data, test_data)
+    train_arr, test_arr, _ = data_transformation_obj.initiate_data_transformation(train_data, test_data)
+    
+    modeltrainer_obj = ModelTrainer()
+    
+    print(modeltrainer_obj.initiate_model_trainer(train_arr, test_arr))
+    
     
     
     
