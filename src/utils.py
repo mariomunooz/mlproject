@@ -48,8 +48,6 @@ def evaluate_models(X_train, y_train, X_test, y_test, models:dict, params):
             
             
             
-            
-            
             model.fit(X_train, y_train)
             
             
@@ -72,5 +70,13 @@ def load_params_from_yaml(params_file: str):
         with open(params_file, 'r') as file:
             return yaml.safe_load(file)
     
+    except Exception as e:
+        raise CustomException(e, sys)
+    
+    
+def load_object(file_path):
+    try:
+        with open(file_path, "rb") as file_obj:
+            return pickle.load(file_obj)
     except Exception as e:
         raise CustomException(e, sys)
